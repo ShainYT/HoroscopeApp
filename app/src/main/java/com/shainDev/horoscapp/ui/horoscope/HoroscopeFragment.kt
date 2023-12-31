@@ -4,14 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.shainDev.horoscapp.databinding.FragmentHoroscopeBinding
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Aquarius
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Aries
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Cancer
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Capricorn
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Gemini
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Leo
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Libra
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Pisces
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Sagittarius
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Scorpio
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Taurus
+import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Virgo
+import com.shainDev.horoscapp.domain.model.HoroscopeModel
 import com.shainDev.horoscapp.ui.horoscope.adapter.HoroscopeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -39,7 +52,25 @@ class HoroscopeFragment : Fragment() {
 
     private fun initList() {
         horoscopeAdapter = HoroscopeAdapter(onItemSelected = {
-            Toast.makeText(context, getString(it.name), Toast.LENGTH_LONG).show()
+            val type = when (it) {
+                Aquarius -> HoroscopeModel.Aquarius
+                Aries -> HoroscopeModel.Aries
+                Cancer -> HoroscopeModel.Cancer
+                Capricorn -> HoroscopeModel.Capricorn
+                Gemini -> HoroscopeModel.Gemini
+                Leo -> HoroscopeModel.Leo
+                Libra -> HoroscopeModel.Libra
+                Pisces -> HoroscopeModel.Pisces
+                Sagittarius -> HoroscopeModel.Sagittarius
+                Scorpio -> HoroscopeModel.Scorpio
+                Taurus -> HoroscopeModel.Taurus
+                Virgo -> HoroscopeModel.Virgo
+            }
+//            Toast.makeText(context, getString(it.name), Toast.LENGTH_LONG).show()
+            findNavController().navigate(
+                HoroscopeFragmentDirections.actionHoroscopeFragmentToHoroscopeDetailActivity(type)
+            )
+
         })
         //Esta es una alternativa de hacerlo como esta comentado abajo.
         binding.rvHoroscope.apply {
