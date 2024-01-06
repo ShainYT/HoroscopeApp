@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.shainDev.horoscapp.databinding.FragmentHoroscopeBinding
+
 import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Aquarius
 import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Aries
 import com.shainDev.horoscapp.domain.model.HoroscopeInfo.Cancer

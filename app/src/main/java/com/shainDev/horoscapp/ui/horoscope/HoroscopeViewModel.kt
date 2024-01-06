@@ -21,7 +21,6 @@ class HoroscopeViewModel @Inject constructor(horoscopeProvider: HoroscopeProvide
     init {
         _horoscope.value =
             horoscopeProvider.getHoroscopes()
-
     }
 
 
