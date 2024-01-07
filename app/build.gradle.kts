@@ -19,9 +19,14 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner =
+//            "androidx.test.runner.AndroidJUnitRunner" //Este funciona para cuando no usas dagger hilt
+        testInstrumentationRunner =
+            "com.shainDev.horoscapp.CustomTestRunner" //Este funciona para cuando no usas dagger hilt
     }
-
+    packaging {
+        resources.excludes.add("META-INF/*")
+    }
     buildTypes {
 
         getByName("release") {
@@ -96,7 +101,8 @@ dependencies {
     //UnitTesting
     testImplementation("junit:junit:4.13.2") //Solo funciona en el directorio test
     testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1") //Agregado por el ide
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2") //Agregado por el ide
+    androidTestImplementation("org.junit.jupiter:junit-jupiter:5.8.2") //Agregado por el ide
     //Mockk
     testImplementation("io.mockk:mockk:${mockkVersion}")
 
@@ -104,5 +110,13 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5") //Solo funciona en el  directorio androidtest
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    //UITesting
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation("androidx.test.espresso:espresso-contrib:3.5.1")
+    androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.48")
+    androidTestImplementation("androidx.fragment:fragment-testing:1.6.2")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.48")
 
 }
