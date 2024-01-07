@@ -57,11 +57,13 @@ android {
 }
 
 dependencies {
+
     val nav_version = "2.7.6"
     val dagger_version = "2.50"
     val retrofit_version = "2.9.0"
     val logginginterceptor_version = "4.12.0"
     val cameraVersion = "1.2.3"
+    val mockkVersion = "1.13.8"
 
 
     //NavigationComponent
@@ -79,18 +81,27 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:$logginginterceptor_version")
 
     //Camera X
-    implementation ("androidx.camera:camera-core:${cameraVersion}")
-    implementation ("androidx.camera:camera-camera2:${cameraVersion}")
-    implementation ("androidx.camera:camera-lifecycle:${cameraVersion}")
-    implementation ("androidx.camera:camera-view:${cameraVersion}")
-    implementation ("androidx.camera:camera-extensions:${cameraVersion}")
+    implementation("androidx.camera:camera-core:${cameraVersion}")
+    implementation("androidx.camera:camera-camera2:${cameraVersion}")
+    implementation("androidx.camera:camera-lifecycle:${cameraVersion}")
+    implementation("androidx.camera:camera-view:${cameraVersion}")
+    implementation("androidx.camera:camera-extensions:${cameraVersion}")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+
+    //Testing incluidos
+    //UnitTesting
+    testImplementation("junit:junit:4.13.2") //Solo funciona en el directorio test
+    testImplementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1") //Agregado por el ide
+    //Mockk
+    testImplementation("io.mockk:mockk:${mockkVersion}")
+
+    //Cmd + shift + t mac seleccionando una clase para que cre los test
+    androidTestImplementation("androidx.test.ext:junit:1.1.5") //Solo funciona en el  directorio androidtest
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
 
